@@ -11,7 +11,7 @@
     <RepositoryUrl>https://github.com/chrisadol/SnowMaker/</RepositoryUrl>
     <Version>1.0.6</Version>
     <AssemblyVersion>1.0.6.0</AssemblyVersion>
-    <PackageReleaseNotes>No changes, just building to latest WindowsAzure.Storage version.</PackageReleaseNotes>
+    <PackageReleaseNotes>Upgrading to Microsoft.Azure.Storage.Blob</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>
