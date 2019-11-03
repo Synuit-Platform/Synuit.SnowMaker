@@ -6,12 +6,12 @@
     <PackageId>SnowMakerCore</PackageId>
     <Description>netcore3.0 and netstandard2.1 version of SnowMaker</Description>
     <Authors>Tatham Oddie, Chris Adol</Authors>
-    <PackageLicenseUrl>https://github.com/chrisadol/SnowMaker/blob/master/LICENSE</PackageLicenseUrl>
     <PackageProjectUrl>https://github.com/chrisadol/SnowMaker/</PackageProjectUrl>
     <RepositoryUrl>https://github.com/chrisadol/SnowMaker/</RepositoryUrl>
     <Version>1.0.6</Version>
     <AssemblyVersion>1.0.6.0</AssemblyVersion>
     <PackageReleaseNotes>Upgrading to Microsoft.Azure.Storage.Blob</PackageReleaseNotes>
+    <PackageLicenseExpression>MS-PL</PackageLicenseExpression>
   </PropertyGroup>
 
   <ItemGroup>
