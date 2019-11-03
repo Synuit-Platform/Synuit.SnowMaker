@@ -9,9 +9,11 @@
     <PackageProjectUrl>https://github.com/chrisadol/SnowMaker/</PackageProjectUrl>
     <RepositoryUrl>https://github.com/chrisadol/SnowMaker/</RepositoryUrl>
     <Version>1.0.6</Version>
-    <AssemblyVersion>1.0.6.0</AssemblyVersion>
-    <PackageReleaseNotes>Upgrading to Microsoft.Azure.Storage.Blob</PackageReleaseNotes>
+    <AssemblyVersion>1.0.7.0</AssemblyVersion>
+    <PackageReleaseNotes>Bug fixed when accessing from multiple generators.
+Previously had accidentally missed the AccessCondition (i.e. not a true refactor).</PackageReleaseNotes>
     <PackageLicenseExpression>MS-PL</PackageLicenseExpression>
+    <FileVersion>1.0.7.0</FileVersion>
   </PropertyGroup>
 
   <ItemGroup>

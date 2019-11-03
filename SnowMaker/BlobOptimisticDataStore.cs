@@ -54,7 +54,7 @@ namespace SnowMaker
             var blobReference = await GetBlobReferenceAsync(scopeName);
             try
             {
-                await UploadTextAsync(blobReference,data);
+                await UploadTextAsync(blobReference,data, AccessCondition.GenerateIfMatchCondition(blobReference.Properties.ETag));
             }
             catch (StorageException exc)
             {
@@ -83,7 +83,7 @@ namespace SnowMaker
 
             try
             {
-                await UploadTextAsync(blobReference, SeedValue);
+                await UploadTextAsync(blobReference, SeedValue, AccessCondition.GenerateIfNoneMatchCondition("*"));
             }
             catch (StorageException uploadException)
             {
@@ -94,13 +94,13 @@ namespace SnowMaker
             return blobReference;
         }
 
-        private async Task UploadTextAsync(ICloudBlob blob, string text)
+        private async Task UploadTextAsync(ICloudBlob blob, string text, AccessCondition accessCondition)
         {
             blob.Properties.ContentEncoding = "UTF-8";
             blob.Properties.ContentType = "text/plain";
             using (var stream = new MemoryStream(Encoding.UTF8.GetBytes(text)))
             {
-                await blob.UploadFromStreamAsync(stream);
+                await blob.UploadFromStreamAsync(stream,accessCondition, new BlobRequestOptions(), new OperationContext());
             }
         }
     }

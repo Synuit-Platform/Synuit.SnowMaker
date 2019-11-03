@@ -183,5 +183,57 @@ namespace SnowMaker.IntegrationTests
                     Assert.Inconclusive("The test failed to actually utilize multiple threads. {0} uniqueThreadsUsed", uniqueThreadsUsed);
             }
         }
+
+        [Test]
+        public async Task ShouldSupportUsingMultipleGeneratorsFromMultipleThreads()
+        {
+
+            // Arrange
+            using (var testScope = BuildTestScope())
+            {
+                var store = await BuildStoreAsync(testScope);
+                var generator = new UniqueIdGenerator(store) { BatchSize = 1000 };
+                var store2 = await BuildStoreAsync(testScope);
+                var generator2 = new UniqueIdGenerator(store2) { BatchSize = 1000 };
+                const int testLength = 10000;
+
+                // Act
+                var generatedIds = new ConcurrentQueue<long>();
+                var threadIds = new ConcurrentQueue<int>();
+                var scopeName = testScope.IdScopeName;
+
+                var listToExecute = new List<int>();
+                for (int i = 0; i < testLength; i++)
+                {
+                    listToExecute.Add(i);
+                }
+
+                var tasks = listToExecute.ForEachAsync(10, async item =>
+                {
+                    var idToAdd = await generator.NextIdAsync(scopeName);
+                    generatedIds.Enqueue(idToAdd);
+                    threadIds.Enqueue(Thread.CurrentThread.ManagedThreadId);
+                });
+                var tasks2 = listToExecute.ForEachAsync(10, async item =>
+                {
+                    var idToAdd = await generator2.NextIdAsync(scopeName);
+                    generatedIds.Enqueue(idToAdd);
+                    threadIds.Enqueue(Thread.CurrentThread.ManagedThreadId);
+                });
+                
+                await Task.WhenAll(tasks,tasks2);
+
+                // Assert we generated the right count of ids
+                Assert.AreEqual(testLength*2, generatedIds.Count,"wrong number of ids generated");
+
+                // Assert there were no duplicates
+                Assert.IsFalse(generatedIds.GroupBy(n => n).Any(g => g.Count() != 1), "duplicated ids were generated");
+
+                // Assert we used multiple threads
+                var uniqueThreadsUsed = threadIds.Distinct().Count();
+                if (uniqueThreadsUsed == 1)
+                    Assert.Inconclusive("The test failed to actually utilize multiple threads. {0} uniqueThreadsUsed", uniqueThreadsUsed);
+            }
+        }
     }
 }
