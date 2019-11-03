@@ -1,25 +1,25 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>netcoreapp2.0;netstandard2.0</TargetFrameworks>
+    <TargetFrameworks>netcoreapp3.0;netstandard2.1</TargetFrameworks>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <PackageId>SnowMakerCore</PackageId>
-    <Description>netcore2.0 and netstandard2.0 version of SnowMaker</Description>
+    <Description>netcore3.0 and netstandard2.1 version of SnowMaker</Description>
     <Authors>Tatham Oddie, Chris Adol</Authors>
     <PackageLicenseUrl>https://github.com/chrisadol/SnowMaker/blob/master/LICENSE</PackageLicenseUrl>
     <PackageProjectUrl>https://github.com/chrisadol/SnowMaker/</PackageProjectUrl>
     <RepositoryUrl>https://github.com/chrisadol/SnowMaker/</RepositoryUrl>
-    <Version>1.0.4</Version>
-    <AssemblyVersion>1.0.4.0</AssemblyVersion>
+    <Version>1.0.5</Version>
+    <AssemblyVersion>1.0.5.0</AssemblyVersion>
     <PackageReleaseNotes>No changes, just building to latest WindowsAzure.Storage version.</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.DiaSymReader.Native" Version="1.5.0" />
-    <PackageReference Include="WindowsAzure.Storage" Version="8.5.0" />
+    <PackageReference Include="Microsoft.DiaSymReader.Native" Version="1.7.0" />
+    <PackageReference Include="WindowsAzure.Storage" Version="9.3.3" />
   </ItemGroup>
 
-  <PropertyGroup Condition="'$(TargetFramework)'=='netstandard2.0'">
+  <PropertyGroup Condition="'$(TargetFramework)'=='netstandard2.1'">
     <DefineConstants>TARGETTING_NETSTANDARD</DefineConstants>
   </PropertyGroup>
 

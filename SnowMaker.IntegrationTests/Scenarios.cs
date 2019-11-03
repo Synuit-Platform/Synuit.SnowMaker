@@ -141,7 +141,7 @@ namespace SnowMaker.IntegrationTests
             }
         }
 
-        [Test, Parallelizable(ParallelScope.All)]
+        [Test]
         public async Task ShouldSupportUsingOneGeneratorFromMultipleThreads()
         {
 
