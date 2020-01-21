@@ -1,19 +1,18 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>netcoreapp3.0;netstandard2.1</TargetFrameworks>
+    <TargetFrameworks>netstandard1.3;netstandard2.0;</TargetFrameworks>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <PackageId>SnowMakerCore</PackageId>
-    <Description>netcore3.0 and netstandard2.1 version of SnowMaker</Description>
+    <Description>netstandard1.3, netstandard2.0 version of SnowMaker</Description>
     <Authors>Tatham Oddie, Chris Adol</Authors>
     <PackageProjectUrl>https://github.com/chrisadol/SnowMaker/</PackageProjectUrl>
     <RepositoryUrl>https://github.com/chrisadol/SnowMaker/</RepositoryUrl>
-    <Version>1.0.6</Version>
-    <AssemblyVersion>1.0.7.0</AssemblyVersion>
-    <PackageReleaseNotes>Bug fixed when accessing from multiple generators.
-Previously had accidentally missed the AccessCondition (i.e. not a true refactor).</PackageReleaseNotes>
+    <Version>1.0.9</Version>
+    <AssemblyVersion>1.0.9.0</AssemblyVersion>
+    <PackageReleaseNotes>Changed targeting, and integration tests...</PackageReleaseNotes>
     <PackageLicenseExpression>MS-PL</PackageLicenseExpression>
-    <FileVersion>1.0.7.0</FileVersion>
+    <FileVersion>1.0.9.0</FileVersion>
   </PropertyGroup>
 
   <ItemGroup>
@@ -21,9 +20,12 @@ Previously had accidentally missed the AccessCondition (i.e. not a true refactor
     <PackageReference Include="Microsoft.DiaSymReader.Native" Version="1.7.0" />
   </ItemGroup>
 
-  <PropertyGroup Condition="'$(TargetFramework)'=='netstandard2.1'">
+  <PropertyGroup Condition="'$(TargetFramework)'=='netstandard1.3'">
     <DefineConstants>TARGETTING_NETSTANDARD</DefineConstants>
     <PackageLicenseExpression>MS-PL</PackageLicenseExpression>
   </PropertyGroup>
-
+  <PropertyGroup Condition="'$(TargetFramework)'=='netstandard2.0'">
+    <DefineConstants>TARGETTING_NETSTANDARD</DefineConstants>
+    <PackageLicenseExpression>MS-PL</PackageLicenseExpression>
+  </PropertyGroup>
 </Project>

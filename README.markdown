@@ -5,7 +5,7 @@ A high performance, distributed unique id generator for Azure environments.
 
 Ids are longs, not ugly GUIDs.
 
-This forked version updated by Chris Adol to use netcore3.0 / netstandard2.1 and async.
+This forked version updated by Chris Adol to  netstandard1.3/netstandard2.0 and async.
 
 This version is available on NuGet as SnowMakerCore: [http://nuget.org/List/Packages/SnowMakerCore](http://nuget.org/List/Packages/SnowMakerCore)
 
